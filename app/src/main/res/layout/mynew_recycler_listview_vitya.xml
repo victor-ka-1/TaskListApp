@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/isDone_checkBoxik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"/>
+
+    <TextView
+    android:id="@+id/taskId"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tvTask"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceSearchResultSubtitle"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@android:color/tertiary_text_dark"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:src="@drawable/delete_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="@string/image"/>
+</LinearLayout>
