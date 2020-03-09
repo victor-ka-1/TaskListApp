@@ -20,4 +20,3 @@ val viewModelModule = module {
 val appModule = module {
     single { TaskRepository( dao = get()) as ITaskRepository }
 }
-//ddd
