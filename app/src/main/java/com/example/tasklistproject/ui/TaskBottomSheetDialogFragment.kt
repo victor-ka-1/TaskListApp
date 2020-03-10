@@ -53,7 +53,7 @@ class TaskBottomSheetDialogFragment : BaseFullScreenBottomSheetDialogFragment() 
             val additionalInfo = view.bottom_sheet_editText_AdditionalInfo.text.toString()
             val doneState = view.checkbox_doneState.isChecked
             if(taskName.isBlank()){
-                Toast.makeText(activity, "Task name can not be empty",Toast.LENGTH_SHORT).show()
+                view.bottom_sheet_editText_TaskName.error = getString(R.string.error_taskname)
                 return@setOnClickListener
             }
 
@@ -67,9 +67,16 @@ class TaskBottomSheetDialogFragment : BaseFullScreenBottomSheetDialogFragment() 
                     dismiss()
                 }
             }
+
+
+            view.bottom_sheet_editText_TaskName.setOnKeyListener { _, _, _ ->
+                if (view.bottom_sheet_editText_TaskName.text!!.isNotEmpty()) {
+                    view.bottom_sheet_editText_TaskName.error = null //Clear the error
+                }
+                false
+            }
+
         }
-
-
     }
 
     companion object{
