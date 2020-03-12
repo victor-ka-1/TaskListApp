@@ -3,7 +3,9 @@ package com.example.tasklistproject.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasklistproject.R
@@ -34,6 +36,7 @@ class MainScreenActivity : AppCompatActivity() {
                                 putString(this@MainScreenActivity.resources.getString(R.string.TASK_NAME), task.name)
                                 putString(this@MainScreenActivity.resources.getString(R.string.TASK_ADDITIONAL_INFO), task.info)
                                 putInt(this@MainScreenActivity.resources.getString(R.string.TASK_ID), task.id!!)
+                                putBoolean(this@MainScreenActivity.resources.getString(R.string.TASK_IMPORTANT), task.isImportant)
                             })
                             show(supportFragmentManager,"bottom_sheet_fragmentDialog")
                         }
@@ -62,15 +65,31 @@ class MainScreenActivity : AppCompatActivity() {
         })
 
 
-        addNewTaskButton.setOnClickListener {
+        addFloatingButton.setOnClickListener {
             val fragment = TaskBottomSheetDialogFragment.newInstance(OpenReason.REASON_ADD)
             fragment.show(supportFragmentManager,"bottom_sheet_fragmentDialog")
+            addFloatingButton.hide()
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater =menuInflater
         inflater.inflate(R.menu.tasks_options_menu,menu)
+
+        val searchItem = menu!!.findItem(R.id.searchItem)
+        val searchView = searchItem.actionView as SearchView
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+        searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                myAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
         return true
     }
 
@@ -80,6 +99,13 @@ class MainScreenActivity : AppCompatActivity() {
             R.id.deleteAllMenuItem -> {
                 myViewModel.deleteAllTasks()
                 true
+            }
+            R.id.choose_important_tasks->{
+                myAdapter.apply {
+                    myViewModel.showType.value = ShowType.IMPORTANT_TASKS
+                }
+                item.isChecked =true
+                return true
             }
             R.id.choose_doneTasks_menuItem ->{
                 myAdapter.apply {
@@ -107,4 +133,20 @@ class MainScreenActivity : AppCompatActivity() {
         }
     }
 
+//    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
+//        if (event?.action == MotionEvent.ACTION_DOWN) {
+//            val v = currentFocus
+//            if (v is EditText) {
+//                val outRect = Rect()
+//                v.getGlobalVisibleRect(outRect)
+//                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+//                    v.clearFocus()
+//                    val imm =
+//                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
+//                }
+//            }
+//        }
+//        return super.dispatchTouchEvent(event)
+//    }
 }

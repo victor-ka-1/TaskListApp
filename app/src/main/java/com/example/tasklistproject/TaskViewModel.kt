@@ -3,9 +3,7 @@ package com.example.tasklistproject
 import androidx.lifecycle.*
 import com.example.tasklistproject.room.Task
 import com.example.tasklistproject.ui.ShowType
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
 
 fun <R> combineLatest(vararg dependencies: LiveData<out Any?>, combiner: () -> R?): LiveData<R> =
     MediatorLiveData<R>().also { mediatorLiveData ->
@@ -26,26 +24,23 @@ class TaskViewModel(private val repository: ITaskRepository) : ViewModel(){
             ShowType.ALL_TASKS -> allTasksLiveData.value
             ShowType.DONE_TASKS -> allTasksLiveData.value?.filter { task -> task.isDone }
             ShowType.UNDONE_TASKS -> allTasksLiveData.value?.filter { task -> !task.isDone }
+            ShowType.IMPORTANT_TASKS -> allTasksLiveData.value?.filter { task -> task.isImportant }
             else -> null
         }
     }
 
-    fun setShowType(newShowType: ShowType){
-        showType.value = newShowType
-    }
-
     fun addNewTask(task: Task){
-        GlobalScope.launch { repository.insert(task)}
+        viewModelScope.launch { repository.insert(task)}
     }
     fun deleteTask(task: Task){
-        GlobalScope.launch { repository.delete(task) }
+        viewModelScope.launch { repository.delete(task) }
 
     }
     fun updateTask(task: Task){
-        GlobalScope.launch { repository.update(task) }
+        viewModelScope.launch { repository.update(task) }
     }
     fun deleteAllTasks(){
-        GlobalScope.launch { repository.deleteAllTasks() }
+        viewModelScope.launch { repository.deleteAllTasks() }
     }
 }
 

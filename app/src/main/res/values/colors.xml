@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary"> #FF8C00</color>
+    <!--    #6200EE -->
+    <color name="colorPrimaryDark">#E64C00</color>
+<!--    #3700B3-->
     <color name="colorAccent">#03DAC5</color>
     <color name="colorWhite">#FFFFFF</color>
 
+
     <color name="textColorPrimary">#442C2E</color>
-    <color name="textInputOutlineColor">#FBB8AC</color>
+    <color name="textInputOutlineColor">#0000FF</color>
+
+    <color name="actionButtonColor">#FFA500</color>
+<!--    #00AFF0-->
+    <color name="spacerColor">#FF4500</color>
+<!--    #DCDCDC-->
+    <color name="highlightedTask">#ffc26c</color>
 </resources>

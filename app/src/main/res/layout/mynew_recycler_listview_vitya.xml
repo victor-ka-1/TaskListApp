@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground">
+    android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatCheckBox
+    <LinearLayout
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="16dp"
+        android:paddingStart="1dp">
+
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/isDone_checkBoxik"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"/>
+        android:layout_height="wrap_content"/>
 
     <TextView
     android:id="@+id/taskId"
@@ -20,27 +23,47 @@
     android:layout_height="wrap_content"
     android:textSize="12sp"/>
 
-    <TextView
-        android:id="@+id/tvTask"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceSearchResultSubtitle"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textColor="@android:color/tertiary_text_dark"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/Widget.MaterialComponents.TextView"
+            android:id="@+id/tvTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
 
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+    </LinearLayout>
     <ImageButton
         android:id="@+id/deleteButton"
-        android:src="@drawable/delete_icon"
+        android:src="@drawable/ic_delete_outline_24px"
+        android:scaleType="center"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:background="@color/colorWhite"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="16dp"
         android:contentDescription="@string/image"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/actionButtonColor"/>
+    </RelativeLayout>
 </LinearLayout>

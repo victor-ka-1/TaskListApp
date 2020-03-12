@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:background="#fff"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:focusableInTouchMode="true">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_bottom_sheet_editText_TaskName"
@@ -26,7 +27,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/bottom_sheet_editText_TaskName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -51,23 +54,34 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/checkbox_imoptantState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/is_this_task_important"
+        android:textColor="@color/spacerColor"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_bottom_sheet_editText_AdditionalInfo" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkbox_doneState"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/task_is_done"
 
-
-        app:layout_constraintTop_toBottomOf="@id/layout_bottom_sheet_editText_AdditionalInfo"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkbox_imoptantState" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_CreateUpdate_Task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_task"
-        android:visibility="visible"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/checkbox_doneState"

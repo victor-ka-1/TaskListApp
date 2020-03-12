@@ -27,10 +27,14 @@
     <string name="TASK_NAME">task_name</string>
     <string name="TASK_ADDITIONAL_INFO">additional_info</string>
     <string name="TASK_ID">ID</string>
+    <string name="TASK_IMPORTANT">important_status</string>
 
     <string name="update_button">Update task</string>
     <string name="edit">edit</string>
 
-    <string name="error_taskname">taskname can not be empty</string>
+    <string name="error_taskname">cannot be empty</string>
+    <string name="search">Search</string>
+    <string name="important">important</string>
+    <string name="is_this_task_important">Is this task important?</string>
 
 </resources>

@@ -9,5 +9,6 @@ data class Task(
     var isDone:Boolean,
     @ColumnInfo(name = "taskName") var name:String,
     var info: String ="",
+    var isImportant:Boolean = false,
     @PrimaryKey(autoGenerate = true) var id :Int? = null
 )
