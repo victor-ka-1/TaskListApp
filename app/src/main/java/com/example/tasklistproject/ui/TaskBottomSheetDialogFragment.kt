@@ -42,6 +42,8 @@ class TaskBottomSheetDialogFragment : BaseFullScreenBottomSheetDialogFragment() 
 
         if ( (arguments?.getSerializable(resources.getString(R.string.OPEN_REASON)) as OpenReason) == OpenReason.REASON_EDIT){
             view.button_CreateUpdate_Task.text = resources.getString(R.string.update_button)
+            view.delete_buttonInFragm.visibility = View.VISIBLE
+            val initialTask:Task
 
             if(arguments?.getBundle(resources.getString(R.string.TASK_BUNDLE)) != null) {
                 view.checkbox_doneState.isChecked = arguments!!.getBundle(resources.getString(R.string.TASK_BUNDLE))!!
@@ -54,6 +56,19 @@ class TaskBottomSheetDialogFragment : BaseFullScreenBottomSheetDialogFragment() 
                         .getString(resources.getString(R.string.TASK_ADDITIONAL_INFO)))
                 view.checkbox_imoptantState.isChecked = arguments!!.getBundle(resources.getString(R.string.TASK_BUNDLE))!!
                     .getBoolean(resources.getString(R.string.TASK_IMPORTANT))
+
+                initialTask=Task(isDone = view.checkbox_doneState.isChecked,
+                        name = view.bottom_sheet_editText_TaskName.text.toString(),
+                        info = view.bottom_sheet_editText_AdditionalInfo.text.toString(),
+                        isImportant = view.checkbox_imoptantState.isChecked,
+                        id = arguments!!.getBundle(resources.getString(R.string.TASK_BUNDLE))?.getInt(resources.getString(R.string.TASK_ID))
+                )
+
+                view.delete_buttonInFragm.setOnClickListener {
+                    myViewModel.deleteTask(initialTask)
+                    dismiss()
+                    activity!!.addFloatingButton.show()
+                }
             }
         }
 
@@ -83,7 +98,6 @@ class TaskBottomSheetDialogFragment : BaseFullScreenBottomSheetDialogFragment() 
                     activity!!.addFloatingButton.show()
                 }
             }
-
             view.bottom_sheet_editText_TaskName.setOnKeyListener { _, _, _ ->
                 if (view.bottom_sheet_editText_TaskName.text!!.isNotEmpty()) {
                     view.bottom_sheet_editText_TaskName.error = null //Clear the error
@@ -91,6 +105,9 @@ class TaskBottomSheetDialogFragment : BaseFullScreenBottomSheetDialogFragment() 
                 false
             }
         }
+
+
+
     }
 
     //extension for opening keyboard when fragment resumes

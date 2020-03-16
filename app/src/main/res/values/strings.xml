@@ -36,5 +36,6 @@
     <string name="search">Search</string>
     <string name="important">important</string>
     <string name="is_this_task_important">Is this task important?</string>
+    <string name="delete">Delete</string>
 
 </resources>

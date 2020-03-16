@@ -37,6 +37,10 @@
             android:textSize="20sp"
 
             android:textAppearance="?attr/textAppearanceSubtitle2"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="14sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeMaxTextSize="18sp"
             android:gravity="center"
             android:paddingTop="8dp"
             android:paddingStart="16dp"

@@ -23,4 +23,8 @@
         <item name="backgroundTint">@color/actionButtonColor</item>
     </style>
 
+    <style name="Widget.Shrine.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
 </resources>

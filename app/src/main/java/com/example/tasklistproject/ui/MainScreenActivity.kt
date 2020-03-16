@@ -83,7 +83,6 @@ class MainScreenActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 myAdapter.filter.filter(newText)
                 return false
